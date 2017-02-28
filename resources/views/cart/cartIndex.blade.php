@@ -39,24 +39,27 @@
                                     
 	                                    <td><a href="#">{{$item->name}}</a>
 	                                    </td>
-	                                    <td>
-                                        <div class="form-inline">
+	                                    <td width="8">
+                                        
                                             {!!Form::open(['route'=>['item.update',$item->rowId],'method'=>'PUT'])!!}                                                
-                                                <div class="form-group">
-                                                    <input type="number" value="{{$item->qty}}" class="form-control" name="qty">
-                                                    <input type="submit" class="btn btn-default btn-sm" value="Update">                                       
-                                                </div>                                                
-    	                                    {!!Form::close()!!}
-                                        </div>    
+                                                    <input type="number" value="{{$item->qty}}" class="form-control" name="qty">                 
+                                            
 	                                    </td>
 	                                    <td class="text-center">${{$item->price}}</td>
 	                                    
 	                                    <td>${{$item->price * $item->qty}}</td>
 	                                   
-	                                    <td class="text-center">				
-		                        		    <a href="#"><i class="fa fa-trash-o"></i></a>								
+	                                    <td class="text-center">
+                                            <div class="form-inline">	
+                                                <div class="form-group">
+                                                    <input type="submit" class="btn btn-default btn-sm" value="Update"> 		
+		                        		            <a href="#" class="bin-space"><i class="fa fa-trash-o"></i></a>			
+                                                </div>
+                                            </div>
+
+
 	                                    </td>
-                                   
+                                             {!!Form::close()!!}
                                 </tr>
                             @endforeach
                             </tbody>
