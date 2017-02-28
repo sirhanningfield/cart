@@ -37,23 +37,36 @@
 
                                 <tr>
                                     
-                                    <td><a href="#">{{$item->name}}</a>
-                                    </td>
-                                    <td width="8">
-                                        <input type="number" value="{{$item->qty}}" class="form-control ">
-                                    </td>
-                                    <td class="text-center">${{$item->price}}</td>
-                                    
-                                    <td>$246.00</td>
-                                    <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                                    </td>
+	                                    <td><a href="#">{{$item->name}}</a>
+	                                    </td>
+	                                    <td width="8">
+                                        <div class="form-inline">
+                                            <form action="{{ route('item.update',$item->rowId) }}" method="POST">
+                                                {{ method_field('POST') }}
+                                                {{ csrf_field() }}
+                                                <div class="form-group">
+                                                    <input type="number" value="{{$item->qty}}" class="form-control" name="qty">
+                                                    <input type="submit" class="btn btn-default btn-sm" value="Update">                                       
+                                                </div>
+                                                
+    	                                    </form>
+                                        </div>    
+	                                    </td>
+	                                    <td class="text-center">${{$item->price}}</td>
+	                                    
+	                                    <td>${{$item->price * $item->qty}}</td>
+	                                   
+	                                    <td class="text-center">				
+		                        		    <a href="#"><i class="fa fa-trash-o"></i></a>								
+	                                    </td>
+                                   
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th colspan="3">Total</th>
-                                    <th colspan="2">$446.00</th>
+                                    <th colspan="2">${{Cart::subtotal()}}</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -63,10 +76,10 @@
 
                     <div class="box-footer">
                         <div class="pull-left">
-                            <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                            <a href="{{ route('home') }}" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
+                            
                             <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
                             </button>
                         </div>
@@ -89,19 +102,16 @@
                             <tbody>
                                 <tr>
                                     <td>Order subtotal</td>
-                                    <th>$446.00</th>
+                                    <th>${{Cart::subtotal()}}</th>
                                 </tr>
-                                <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
-                                </tr>
+                            
                                 <tr>
                                     <td>Tax</td>
-                                    <th>$0.00</th>
+                                    <th>${{Cart::tax()}}</th>
                                 </tr>
                                 <tr class="total">
                                     <td>Total</td>
-                                    <th>$456.00</th>
+                                    <th>${{Cart::total()}}</th>
                                 </tr>
                             </tbody>
                         </table>

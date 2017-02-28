@@ -32,4 +32,9 @@ class CartController extends Controller
     	return view('cart.cartIndex')->withItems($items);
     }
    
+   public function UpdateItem(Request $request, $rowId)
+   {
+   	# code...
+   	
+   }
 }
