@@ -39,17 +39,14 @@
                                     
 	                                    <td><a href="#">{{$item->name}}</a>
 	                                    </td>
-	                                    <td width="8">
+	                                    <td>
                                         <div class="form-inline">
-                                            <form action="{{ route('item.update',$item->rowId) }}" method="POST">
-                                                {{ method_field('POST') }}
-                                                {{ csrf_field() }}
+                                            {!!Form::open(['route'=>['item.update',$item->rowId],'method'=>'PUT'])!!}                                                
                                                 <div class="form-group">
                                                     <input type="number" value="{{$item->qty}}" class="form-control" name="qty">
                                                     <input type="submit" class="btn btn-default btn-sm" value="Update">                                       
-                                                </div>
-                                                
-    	                                    </form>
+                                                </div>                                                
+    	                                    {!!Form::close()!!}
                                         </div>    
 	                                    </td>
 	                                    <td class="text-center">${{$item->price}}</td>

@@ -42,7 +42,7 @@ Route::get('cart',[
 	'as'=>'cart',
 	'uses'=>'CartController@getCartIndex']);
 
-Route::post('updateitem/{rowId}',[
+Route::put('updateitem/{rowId}',[
 	'as'=>'item.update',
 	'uses'=> 'CartController@UpdateItem'
 	]);
