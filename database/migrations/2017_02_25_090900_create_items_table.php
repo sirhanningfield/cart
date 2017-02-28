@@ -15,12 +15,12 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('product#');
+            $table->string('productno')->unique();
             $table->string('title');
             $table->text('description');
             $table->float('price',8,2);
-            $table->string('category');
-            $table->string('subcategory');
+            $table->string('category')->index();
+            $table->string('subcategory')->index();
             $table->integer('quantity');
             $table->string('image')->nullable();
             $table->timestamps();

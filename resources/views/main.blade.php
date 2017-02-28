@@ -9,6 +9,7 @@
 	@include('partials._nav')
 
 	<div id="all">
+		@include('partials._messages')
 		@yield('content')
 		@include('partials._foot')
 	</div>

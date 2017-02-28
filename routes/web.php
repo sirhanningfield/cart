@@ -30,3 +30,14 @@ Route::get('/',['as'=> 'home','uses'=>'PagesController@getHome']);
 
 //ProductController routes
 Route::resource('products','ProductController');
+
+
+//CartController Routes:
+Route::get('cart/{id}',[
+	'as'=>'cart.add', 
+	'uses'=>'CartController@getAddToCart'
+	]);
+
+Route::get('cart',[
+	'as'=>'cart',
+	'uses'=>'CartController@getCartIndex']);
