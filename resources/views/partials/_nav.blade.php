@@ -21,6 +21,7 @@
                         <i class="fa fa-shopping-cart" ></i>  <span class="hidden-xs"> {{Cart::count()}} items in cart</span>
                     </a>
                 </div>
+
             </div>
             <!--/.navbar-header -->
 
@@ -148,7 +149,7 @@
             <div class="navbar-buttons">
 
                 <div class="navbar-collapse collapse right" id="basket-overview">
-                    <a href="{{ route('cart') }}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">({{Cart::count()}}) items in cart</span></a>
+                    <a href="{{ route('cart.index') }}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">({{Cart::count()}}) items in cart</span></a>
                 </div>
                 <!--/.nav-collapse -->
 

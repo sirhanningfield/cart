@@ -27,46 +27,48 @@
                                 <tr>
                                     <th>Product</th>
                                     <th class="text-left">Quantity</th>
-                                    <th class="text-center">Unit price</th>
+                                    <th class="text-center">Unit price</th>                                   
+                                    <th colspan="">Total</th>
+
+                                    <th></th>
+                                    <th></th>
                                     
-                                    <th colspan="2">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($items as $item)
 
-                                <tr>
+                                <tr>                                    
+                                    <td><a href="#">{{$item->name}}</a></td>
+                                    <td width="8">                                    
+                                        {!!Form::open(['route'=>['item.update',$item->rowId],'method'=>'POST'])!!}                                                
+                                                <input type="number" value="{{$item->qty}}" class="form-control" name="qty">                                     
+                                    </td>
+                                    <td class="text-center">${{$item->price}}</td>
                                     
-	                                    <td><a href="#">{{$item->name}}</a>
-	                                    </td>
-	                                    <td width="8">
-                                        
-                                            {!!Form::open(['route'=>['item.update',$item->rowId],'method'=>'PUT'])!!}                                                
-                                                    <input type="number" value="{{$item->qty}}" class="form-control" name="qty">                 
-                                            
-	                                    </td>
-	                                    <td class="text-center">${{$item->price}}</td>
-	                                    
-	                                    <td>${{$item->price * $item->qty}}</td>
-	                                   
-	                                    <td class="text-center">
-                                            <div class="form-inline">	
-                                                <div class="form-group">
-                                                    <input type="submit" class="btn btn-default btn-sm" value="Update"> 		
-		                        		            <a href="#" class="bin-space"><i class="fa fa-trash-o"></i></a>			
-                                                </div>
+                                    <td>${{$item->price * $item->qty}}</td>
+                                    
+                                    <td class="text-right">
+                                        <div class="form-inline">	
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-default btn-sm" value="Update"> 
+                                                {!!Form::close()!!}                                			
                                             </div>
-
-
-	                                    </td>
-                                             {!!Form::close()!!}
+                                        </div>
+                                    </td>
+                                    <td class="pull-left">
+                                        {!!Form::open(['route'=>['item.delete',$item->rowId],'method'=>'POST'])!!}        
+                                                <button class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash-o"></i></button>
+                                                {!!Form::close()!!}
+                                    </td>                                             
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th colspan="3">Total</th>
-                                    <th colspan="2">${{Cart::subtotal()}}</th>
+                                    <th colspan="3">${{Cart::subtotal()}}</th>
+                                                                       
                                 </tr>
                             </tfoot>
                         </table>

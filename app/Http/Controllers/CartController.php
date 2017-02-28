@@ -35,6 +35,18 @@ class CartController extends Controller
    public function UpdateItem(Request $request, $rowId)
    {
    	# code...
+    Cart::update($rowId,$request->qty);
+    return redirect()->back();
    	
+   }
+
+   public function DeleteItem(Request $request,$rowId)
+   {
+     # code...
+    
+    Cart::remove($rowId);
+    Session::flash('Success','Item deleted successfully');
+    return redirect()->back();
+
    }
 }

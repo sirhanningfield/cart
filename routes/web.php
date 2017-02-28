@@ -39,10 +39,14 @@ Route::get('cart/{id}',[
 	]);
 
 Route::get('cart',[
-	'as'=>'cart',
+	'as'=>'cart.index',
 	'uses'=>'CartController@getCartIndex']);
 
-Route::put('updateitem/{rowId}',[
+Route::match(['post','put'],'updateitem/{rowId}',[
 	'as'=>'item.update',
 	'uses'=> 'CartController@UpdateItem'
 	]);
+
+Route::post('deleteitem/{rowId}',[
+	'as'=>'item.delete',
+	'uses'=>'CartController@DeleteItem']);
