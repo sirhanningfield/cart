@@ -12,24 +12,29 @@
 */
 
 
-//Product pages routes
-Route::get('men',[
-	'as'=>'men',
-	'uses'=>'ProductPagesController@getMen'
-	]);
-Route::get('ladies',[
-	'as'=>'ladies',
-	'uses'=>'ProductPagesController@getLadies'
-	]);
-
 // Static pages routes
 Route::get('contact','PagesController@getContact');
 Route::get('about','PagesController@getAbout');
 Route::get('/',['as'=> 'home','uses'=>'PagesController@getHome']);
 
 
+//Product pages routes
+Route::get('men',[
+	'as'=>'men',
+	'uses'=>'ProductPagesController@getMen'
+	]);
+
+Route::get('ladies',[
+	'as'=>'ladies',
+	'uses'=>'ProductPagesController@getLadies'
+	]);
+
+
+
 //ProductController routes
 Route::resource('products','ProductController');
+
+
 
 
 //CartController Routes:
@@ -50,3 +55,22 @@ Route::match(['post','put'],'updateitem/{rowId}',[
 Route::post('deleteitem/{rowId}',[
 	'as'=>'item.delete',
 	'uses'=>'CartController@DeleteItem']);
+
+
+
+
+//Checkout routes:
+Route::get('checkout/address',[
+	'as'=>'checkout.address',
+	'uses'=>'CheckoutController@getAddressForm'
+	]);
+
+Route::post('checkout/address',[
+	'as'=>'checkout.store',
+	'uses'=>'CheckoutController@postAddress'
+	]);
+
+Route::get('checkout/payment-details',[
+	'as'=>'checkout.payment',
+	'uses'=>'CheckoutController@getCheckoutPayment'
+	]);

@@ -79,7 +79,7 @@ _________________________________________________________ -->
                             <p class="price">$ {{$product->price}}</p>
 
                             <p class="text-center buttons">
-                                <a href="#" class="btn btn-primary btn-block"><i class="fa fa-shopping-cart"></i> Add to cart</a> 
+                                <a href="{{ route('cart.add',$product->id) }}" class="btn btn-primary btn-block"><i class="fa fa-shopping-cart"></i> Add to cart</a> 
                             </p>
                         </div>
                     </div>

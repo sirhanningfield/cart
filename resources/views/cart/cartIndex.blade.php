@@ -28,7 +28,7 @@
                                     <th>Product</th>
                                     <th class="text-left">Quantity</th>
                                     <th class="text-center">Unit price</th>                                   
-                                    <th colspan="">Total</th>
+                                    <th class="text-center">Total</th>
 
                                     <th></th>
                                     <th></th>
@@ -37,29 +37,26 @@
                             </thead>
                             <tbody>
                             @foreach($items as $item)
+                                {!!Form::open(['route'=>['item.update',$item->rowId],'method'=>'POST'])!!}
 
-                                <tr>                                    
+                                <tr>
                                     <td><a href="#">{{$item->name}}</a></td>
-                                    <td width="8">                                    
-                                        {!!Form::open(['route'=>['item.update',$item->rowId],'method'=>'POST'])!!}                                                
-                                                <input type="number" value="{{$item->qty}}" class="form-control" name="qty">                                     
+                                    <td width="8">                                               
+                                        <input type="number" value="{{$item->qty}}" class="form-control" name="qty">                                     
                                     </td>
                                     <td class="text-center">${{$item->price}}</td>
                                     
-                                    <td>${{$item->price * $item->qty}}</td>
+                                    <td class="text-center">${{$item->price * $item->qty}}</td>
                                     
-                                    <td class="text-right">
-                                        <div class="form-inline">	
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-default btn-sm" value="Update"> 
-                                                {!!Form::close()!!}                                			
-                                            </div>
-                                        </div>
+                                    <td class="text-right">                                        
+                                        <input type="submit" class="btn btn-default btn-sm" value="Update"> 
                                     </td>
+                                {!!Form::close()!!}
+
                                     <td class="pull-left">
                                         {!!Form::open(['route'=>['item.delete',$item->rowId],'method'=>'POST'])!!}        
-                                                <button class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash-o"></i></button>
-                                                {!!Form::close()!!}
+                                            <button class="btn btn-sm btn-default" type="submit"><i class="fa fa-trash-o"></i></button>
+                                        {!!Form::close()!!}
                                     </td>                                             
                                 </tr>
                             @endforeach
@@ -82,8 +79,8 @@
                         </div>
                         <div class="pull-right">
                             
-                            <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                            </button>
+                            <a href="{{ route('checkout.address') }}" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></a>
+                        
                         </div>
                     </div>
                 </form>
