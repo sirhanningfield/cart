@@ -64,7 +64,7 @@ class CheckoutController extends Controller
    public function postStorePayment(Request $request)
    {
        # code...
-        \Stripe\Stripe::setApiKey("sk_test_qJVM2IxTApMh5veBxrIX6UEO");
+        \Stripe\Stripe::setApiKey("sk_test_");
 
         // Token is created using Stripe.js or Checkout!
         // Get the payment token submitted by the form:
