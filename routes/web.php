@@ -74,3 +74,8 @@ Route::get('checkout/payment-details',[
 	'as'=>'checkout.payment',
 	'uses'=>'CheckoutController@getCheckoutPayment'
 	]);
+
+Route::post('checkout/make-payment',[
+	'as'=>'checkout.makepayment',
+	'uses'=>'CheckoutController@postStorePayment'
+	]);

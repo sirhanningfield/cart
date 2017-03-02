@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Shipping;
 use Session;
 
@@ -56,7 +57,34 @@ class CheckoutController extends Controller
    public function getCheckoutPayment()
    {
    		# code...
-   		return view('checkout.paymentdetails');
+        $items = Cart::content();
+   		return view('checkout.paymentdetails')->withItems($items);
+   }
+
+   public function postStorePayment(Request $request)
+   {
+       # code...
+        \Stripe\Stripe::setApiKey("sk_test_qJVM2IxTApMh5veBxrIX6UEO");
+
+        // Token is created using Stripe.js or Checkout!
+        // Get the payment token submitted by the form:
+        $token = $request->stripeToken;
+
+        // Charge the user's card:
+        $charge = \Stripe\Charge::create(array(
+          "amount" => Cart::total()*100,
+          "currency" => "usd",
+          "description" => "Payment to Sirhanningfield",
+          "source" => $token,
+        ));
+
+        Session::flash('Success','Payment Successful !');
+
+        Cart::destroy();
+
+        return redirect()->route('home');    
+
+
    }
 
 
